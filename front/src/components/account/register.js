@@ -4,77 +4,196 @@ import DoctorImage from "../../img/online-doctor.png";
 import "./register.scss";
 import "./style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Form } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  Box,
+  Button,
+  FilledInput,
+  Grid,
+  IconButton,
+  InputLabel,
+  InputAdornment,
+  FormControl,
+  styled,
+  TextField,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function Register() {
+  const [values, setValues] = React.useState({
+    email: "",
+    username: "",
+    noTelp: "",
+    alamat: "",
+    tglLahir: "",
+    password: "",
+    confirmPassword: "",
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const ColorButton = styled(Button)(({ theme }) => ({
+    color: "white",
+    backgroundColor: "#51C296",
+    marginBottom: "1.5rem",
+    marginTop: "40px",
+    width: "80%",
+    maxWidth: "500px",
+    padding: ".5rem",
+    "&:hover": {
+      backgroundColor: "#51d596",
+    },
+  }));
+
   return (
-    <div className="base-container">
-      <div className="image col-0 col-md-2"></div>
-      <div className="image col-0 col-md-4">
-        <img src={DoctorImage} className="fixed-top" alt="" />
-      </div>
-      <div className="content col-12 col-md-4 ml-4 mr-4">
-        <div className="header">
-          <h2>Sign Up</h2>
-          <h4>Daftarkan untuk mengakses lebih lanjut</h4>
-        </div>
+    <Box sx={{ flexGrow: 1 }} className="base-container">
+      <Grid container spacing={2}>
+        <Grid item xs={0} md={6} className="image">
+          <img src={DoctorImage} alt="" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div className="header">
+            <h2>Selamat Datang</h2>
+            <h4>Sign in untuk mengakses Antri.in</h4>
+          </div>
+          <div align="center">
+            <TextField
+              label="Email"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+              value={values.email}
+              onChange={handleChange("email")}
+            />
 
-        <Form>
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Masukkan email" />
-          </Form.Group>
+            <TextField
+              label="Username"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+              value={values.username}
+              onChange={handleChange("username")}
+            />
 
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan username" />
-          </Form.Group>
+            <TextField
+              label="Nama"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+              value={values.nama}
+              onChange={handleChange("nama")}
+            />
 
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Nama</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan nama" />
-          </Form.Group>
+            <TextField
+              label="Nomor Telepon"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+              value={values.noTelp}
+              onChange={handleChange("noTelp")}
+            />
 
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Nomor Telepon</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan nomor telepon" />
-          </Form.Group>
+            <TextField
+              label="Alamat"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+              value={values.alamat}
+              onChange={handleChange("alamat")}
+            />
 
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Alamat</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan alamat" />
-          </Form.Group>
+            <TextField
+              label="Tanggal Lahir"
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              type="date"
+              className="form-input"
+              value={values.tglLahir}
+              onChange={handleChange("tglLahir")}
+            />
 
-          <Form.Group className="mb-1" controlId="formBasicEmail">
-            <Form.Label>Tanggal Lahir</Form.Label>
-            <Form.Control type="date" placeholder="Masukkan tanggal lahir" />
-          </Form.Group>
+            <FormControl
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+            >
+              <InputLabel htmlFor="filled-adornment-password">
+                Password
+              </InputLabel>
+              <FilledInput
+                id="filled-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                value={values.password}
+                onChange={handleChange("password")}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
 
-          <Form.Group className="mb-1" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Masukkan password" />
-          </Form.Group>
+            <FormControl
+              sx={{ m: 1, width: "80%", maxWidth: "500px" }}
+              variant="filled"
+              className="form-input"
+            >
+              <InputLabel htmlFor="filled-adornment-password-conf">
+                Konfirmasi Password
+              </InputLabel>
+              <FilledInput
+                id="filled-adornment-password-conf"
+                type={values.showPassword ? "text" : "password"}
+                value={values.confirmPassword}
+                onChange={handleChange("confirmPassword")}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
 
-          <Form.Group className="mb-1" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Masukkan password" />
-          </Form.Group>
+            <div className="clearfix"></div>
 
-          <div className="d-grid gap-2">
-            <Button variant="primary" size="lg" className="custom-btn">
-              Sign Up
-            </Button>
-            <p className="text-center">
+            <ColorButton variant="contained">Sign Up</ColorButton>
+            <p>
               Sudah memiliki akun?{" "}
               <Link to="/login" style={{ color: "#F9B75D" }}>
                 Sign In
               </Link>
             </p>
           </div>
-        </Form>
-      </div>
-      <div className="clearfix col-0 col-md-2"></div>
-    </div>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }

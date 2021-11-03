@@ -11,37 +11,45 @@ $background: #fef8f0;
     float: left;
     margin: 0;
     img {
-      float: right;
+      position: fixed;
+      right: 50%;
       height: 100%;
     }
   }
-  .clearfix {
-    clear: both;
-  }
-  .content {
-    background-color: $background;
-    height: 100vh;
-    padding: 0 2rem;
-    float: left;
-    Form {
-      margin: 0;
-      Label {
-        font-weight: 500;
-      }
-      Button {
-        background-color: #51c296;
-        border: 0;
-      }
+  .form-input {
+    border: 1px solid green;
+    .MuiFilledInput-root {
+      background-color: white !important;
     }
   }
 }
+.clearfix {
+  clear: both;
+}
 
-@media screen and (max-width: 480px) {
-  .base-container img {
+@media screen and (max-width: 900px) {
+  .image {
     display: none;
+  }
+  .lupa-password > a {
+    margin-right: calc((100% - 500px) / 2);
   }
 }
 
-.fixed-top {
-  left: 8rem !important;
+@media screen and (max-width: 625px) {
+  .lupa-password > a {
+    margin-right: 10%;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1250px) {
+  .lupa-password > a {
+    margin-right: 10%;
+  }
+}
+
+@media screen and (min-width: 1251px) {
+  .lupa-password > a {
+    margin-right: calc((100% - 500px) / 2);
+  }
 }

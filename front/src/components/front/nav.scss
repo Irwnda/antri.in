@@ -1,0 +1,23 @@
+$background: #fef8f0;
+$main: #132f3a;
+.nav {
+  background-color: $background;
+  .menu {
+    border-bottom: 1px solid $main;
+    display: flex;
+    justify-content: space-around;
+    a {
+      margin-top: 2rem;
+      text-decoration: none;
+      color: $main;
+    }
+  }
+
+  a.site-title {
+    font-family: "Cormorant SC", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: $main;
+  }
+}

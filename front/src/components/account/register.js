@@ -16,7 +16,7 @@ import {
   styled,
   TextField,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 export default function Register() {
@@ -147,7 +147,11 @@ export default function Register() {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {values.showPassword ? (
+                        <VisibilityOffOutlined />
+                      ) : (
+                        <VisibilityOutlined />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -175,7 +179,11 @@ export default function Register() {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {values.showPassword ? (
+                        <VisibilityOffOutlined />
+                      ) : (
+                        <VisibilityOutlined />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -184,7 +192,12 @@ export default function Register() {
 
             <div className="clearfix"></div>
 
-            <ColorButton variant="contained">Sign Up</ColorButton>
+            <ColorButton
+              variant="contained"
+              sx={{ backgroundColor: "#51C296 !important" }}
+            >
+              Sign Up
+            </ColorButton>
             <p>
               Sudah memiliki akun?{" "}
               <Link to="/login" style={{ color: "#F9B75D" }}>

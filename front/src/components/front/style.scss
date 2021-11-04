@@ -1,0 +1,57 @@
+$background: #fef8f0;
+.user {
+  background-color: $background;
+  cursor: default;
+  .kartu-nomor {
+    width: 45%;
+    float: left;
+    margin: 0 2.5%;
+    border: 2px solid #132f3a;
+    text-align: center;
+    .nomor {
+      border-bottom: 1px solid black;
+      font-size: 4rem;
+      background-color: inherit;
+    }
+  }
+
+  .clearfix {
+    clear: both;
+    height: 1rem;
+  }
+
+  .estimasi {
+    width: 95%;
+    margin: 0 2.5%;
+    border: 2px solid #132f3a;
+    text-align: center;
+
+    .nomor {
+      border-bottom: 1px solid black;
+      font-size: 1.5rem;
+      background-color: inherit;
+    }
+  }
+
+  .info {
+    background-color: inherit;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem 0 0.5;
+  }
+
+  .tombol {
+    width: 95%;
+    margin: 0.75rem 2.5%;
+    border: 2px solid #132f3a;
+    text-align: center;
+    cursor: pointer;
+    .action {
+      font-size: 1.5rem;
+      background-color: inherit;
+      color: white;
+    }
+  }
+  .modal-button {
+    margin: 1rem;
+  }
+}

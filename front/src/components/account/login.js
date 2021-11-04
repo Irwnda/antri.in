@@ -15,7 +15,7 @@ import {
   styled,
   TextField,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -95,7 +95,11 @@ export default function Login() {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {values.showPassword ? (
+                        <VisibilityOffOutlined />
+                      ) : (
+                        <VisibilityOutlined />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -115,7 +119,9 @@ export default function Login() {
               </Link>
             </p>
             <div className="clearfix"></div>
-            <ColorButton variant="contained">Sign In</ColorButton>
+            <ColorButton variant="contained" className="button">
+              Sign In
+            </ColorButton>
             <p>
               Belum memiliki akun?{" "}
               <Link to="/register" style={{ color: "#F9B75D" }}>

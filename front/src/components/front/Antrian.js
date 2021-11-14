@@ -27,7 +27,7 @@ export default function antrian() {
   return (
     <div className="antrian">
       <Nav />
-
+      <div style={{ height: "5rem" }}></div>
       <Link
         to="./"
         style={{

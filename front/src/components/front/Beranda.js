@@ -59,6 +59,7 @@ export default function Beranda() {
   return (
     <div className="beranda">
       <Nav />
+      <div style={{ height: "5rem" }}></div>
       <Box sx={{ flexGrow: 1, marginTop: "1rem" }}>
         <Grid container spacing={2}>
           <Box

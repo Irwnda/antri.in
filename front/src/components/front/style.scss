@@ -77,4 +77,11 @@ $background: #fef8f0;
       }
     }
   }
+  .right {
+    float: right;
+    cursor: pointer;
+    * {
+      font-size: 2rem;
+    }
+  }
 }

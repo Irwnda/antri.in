@@ -1,0 +1,39 @@
+{
+  "start": 49,
+  "end": 56,
+  "total": 56,
+  "data": [
+    {
+      "nomor": 49,
+      "status": "Antri"
+    },
+    {
+      "nomor": 50,
+      "status": "Antri"
+    },
+    {
+      "nomor": 51,
+      "status": "Antri"
+    },
+    {
+      "nomor": 52,
+      "status": "Antri"
+    },
+    {
+      "nomor": 53,
+      "status": "Antri"
+    },
+    {
+      "nomor": 54,
+      "status": "Antri"
+    },
+    {
+      "nomor": 55,
+      "status": "Antri"
+    },
+    {
+      "nomor": 56,
+      "status": "Antri"
+    }
+  ]
+}

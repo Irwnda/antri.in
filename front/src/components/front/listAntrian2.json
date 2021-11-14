@@ -1,0 +1,103 @@
+{
+  "start": 25,
+  "end": 48,
+  "total": 56,
+  "data": [
+    {
+      "nomor": 25,
+      "status": "Antri"
+    },
+    {
+      "nomor": 26,
+      "status": "Antri"
+    },
+    {
+      "nomor": 27,
+      "status": "Antri"
+    },
+    {
+      "nomor": 28,
+      "status": "Antri"
+    },
+    {
+      "nomor": 29,
+      "status": "Antri"
+    },
+    {
+      "nomor": 30,
+      "status": "Antri"
+    },
+    {
+      "nomor": 31,
+      "status": "Antri"
+    },
+    {
+      "nomor": 32,
+      "status": "Antri"
+    },
+    {
+      "nomor": 33,
+      "status": "Antri"
+    },
+    {
+      "nomor": 34,
+      "status": "Batal"
+    },
+    {
+      "nomor": 35,
+      "status": "Antri"
+    },
+    {
+      "nomor": 36,
+      "status": "Antri"
+    },
+    {
+      "nomor": 37,
+      "status": "Antri"
+    },
+    {
+      "nomor": 38,
+      "status": "Antri"
+    },
+    {
+      "nomor": 39,
+      "status": "Antri"
+    },
+    {
+      "nomor": 40,
+      "status": "Antri"
+    },
+    {
+      "nomor": 41,
+      "status": "Antri"
+    },
+    {
+      "nomor": 42,
+      "status": "Antri"
+    },
+    {
+      "nomor": 43,
+      "status": "Antri"
+    },
+    {
+      "nomor": 44,
+      "status": "Antri"
+    },
+    {
+      "nomor": 45,
+      "status": "Batal"
+    },
+    {
+      "nomor": 46,
+      "status": "Antri"
+    },
+    {
+      "nomor": 47,
+      "status": "Antri"
+    },
+    {
+      "nomor": 48,
+      "status": "Antri"
+    }
+  ]
+}

@@ -19,13 +19,23 @@ import {
 import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
+function getDate() {
+  let date = new Date();
+  return (
+    date.getFullYear().toString() +
+    "-" +
+    (date.getMonth() + 1).toString() +
+    "-" +
+    (date.getDate() + 1).toString()
+  );
+}
 export default function Register() {
   const [values, setValues] = React.useState({
     email: "",
     username: "",
     noTelp: "",
     alamat: "",
-    tglLahir: "",
+    tglLahir: getDate(),
     password: "",
     confirmPassword: "",
     showPassword: false,
@@ -62,9 +72,15 @@ export default function Register() {
   return (
     <Box sx={{ flexGrow: 1 }} className="base-container">
       <Grid container spacing={2}>
-        <Grid item xs={0} md={6} className="image">
+        <Box
+          component={Grid}
+          item
+          md={6}
+          display={{ xs: "none", sm: "block" }}
+          className="image"
+        >
           <img src={DoctorImage} alt="" />
-        </Grid>
+        </Box>
         <Grid item xs={12} md={6}>
           <div className="header">
             <h2>Selamat Datang</h2>
@@ -148,9 +164,9 @@ export default function Register() {
                       edge="end"
                     >
                       {values.showPassword ? (
-                        <VisibilityOffOutlined />
-                      ) : (
                         <VisibilityOutlined />
+                      ) : (
+                        <VisibilityOffOutlined />
                       )}
                     </IconButton>
                   </InputAdornment>
@@ -180,9 +196,9 @@ export default function Register() {
                       edge="end"
                     >
                       {values.showPassword ? (
-                        <VisibilityOffOutlined />
-                      ) : (
                         <VisibilityOutlined />
+                      ) : (
+                        <VisibilityOffOutlined />
                       )}
                     </IconButton>
                   </InputAdornment>

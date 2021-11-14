@@ -56,9 +56,15 @@ export default function Login() {
   return (
     <Box sx={{ flexGrow: 1 }} className="base-container">
       <Grid container spacing={2}>
-        <Grid item xs={0} md={6} className="image">
+        <Box
+          component={Grid}
+          item
+          md={6}
+          display={{ xs: "none", sm: "block" }}
+          className="image"
+        >
           <img src={DoctorImage} alt="" />
-        </Grid>
+        </Box>
         <Grid item xs={12} md={6}>
           <div className="header">
             <h2>Selamat Datang</h2>
@@ -96,9 +102,9 @@ export default function Login() {
                       edge="end"
                     >
                       {values.showPassword ? (
-                        <VisibilityOffOutlined />
-                      ) : (
                         <VisibilityOutlined />
+                      ) : (
+                        <VisibilityOffOutlined />
                       )}
                     </IconButton>
                   </InputAdornment>

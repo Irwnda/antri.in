@@ -60,7 +60,7 @@ export default function Login() {
           component={Grid}
           item
           md={6}
-          display={{ xs: "none", sm: "block" }}
+          display={{ xs: "none", md: "block" }}
           className="image"
         >
           <img src={DoctorImage} alt="" />

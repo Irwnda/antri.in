@@ -1,5 +1,5 @@
 $background: #fef8f0;
-.user {
+.beranda {
   background-color: $background;
   cursor: default;
   .kartu-nomor {
@@ -53,5 +53,28 @@ $background: #fef8f0;
   }
   .modal-button {
     margin: 1rem;
+  }
+}
+
+.antrian {
+  background-color: $background;
+  .detailAntrian {
+    width: 10%;
+    margin: 1.25%;
+    border: 2px solid #132f3a;
+    text-align: center;
+    .container {
+      padding-bottom: 0;
+      .nomor {
+        font-size: 3rem;
+        border-bottom: 1px solid black;
+      }
+      .info {
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }

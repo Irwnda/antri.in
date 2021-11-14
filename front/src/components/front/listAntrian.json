@@ -1,0 +1,98 @@
+[
+  {
+    "nomor": 1,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 2,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 3,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 4,
+    "status": "Batal"
+  },
+  {
+    "nomor": 5,
+    "status": "Belum Hadir"
+  },
+  {
+    "nomor": 6,
+    "status": "Sedang Diperiksa"
+  },
+  {
+    "nomor": 7,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 8,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 9,
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 10,
+    "status": "Batal"
+  },
+  {
+    "nomor": 11,
+    "status": "Antri"
+  },
+  {
+    "nomor": 12,
+    "status": "Antri"
+  },
+  {
+    "nomor": 13,
+    "status": "Antri"
+  },
+  {
+    "nomor": 14,
+    "status": "Antri"
+  },
+  {
+    "nomor": 15,
+    "status": "Antri"
+  },
+  {
+    "nomor": 16,
+    "status": "Antri"
+  },
+  {
+    "nomor": 17,
+    "status": "Antri"
+  },
+  {
+    "nomor": 18,
+    "status": "Antri"
+  },
+  {
+    "nomor": 19,
+    "status": "Antri"
+  },
+  {
+    "nomor": 20,
+    "status": "Antri"
+  },
+  {
+    "nomor": 21,
+    "status": "Batal"
+  },
+  {
+    "nomor": 22,
+    "status": "Antri"
+  },
+  {
+    "nomor": 23,
+    "status": "Antri"
+  },
+  {
+    "nomor": 24,
+    "status": "Antri"
+  }
+]

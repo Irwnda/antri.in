@@ -2,7 +2,7 @@ import React from "react";
 import Nav from "./nav";
 import "./style.scss";
 import antrian from "./antrian.json";
-
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -57,7 +57,7 @@ export default function Beranda() {
   }));
 
   return (
-    <div className="user">
+    <div className="beranda">
       <Nav />
       <Box sx={{ flexGrow: 1, marginTop: "1rem" }}>
         <Grid container spacing={2}>
@@ -117,7 +117,9 @@ export default function Beranda() {
                   backgroundColor: "#B2ACD7",
                 }}
               >
-                <div className="action">Lihat Antrian</div>
+                <Link to="./antrian" style={{ textDecoration: "none" }}>
+                  <div className="action">Lihat Antrian</div>
+                </Link>
               </CardContent>
             </Card>
 

@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "./nav";
 import "./style.scss";
+import antrian from "./antrian.json";
+
 import {
   Box,
   Button,
@@ -24,7 +26,16 @@ const style = {
   p: 2,
 };
 
-export default function First() {
+function minToTime(minutes) {
+  let hour = Math.floor(minutes / 60);
+  let min = minutes % 60;
+
+  if (min < 10) min = "0" + min;
+  if (hour === 0) return min + " menit";
+  return hour + " jam " + min + " menit";
+}
+
+export default function Beranda() {
   const [diambil, setDiambil] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -50,9 +61,15 @@ export default function First() {
       <Nav />
       <Box sx={{ flexGrow: 1, marginTop: "1rem" }}>
         <Grid container spacing={2}>
-          <Grid item xs={0} md={7}>
+          <Box
+            component={Grid}
+            item
+            md={7}
+            display={{ xs: "none", md: "block" }}
+            className="image"
+          >
             Ini gambar
-          </Grid>
+          </Box>
           <Grid item xs={12} md={5}>
             <Card className="kartu-nomor">
               <CardContent
@@ -62,7 +79,9 @@ export default function First() {
                     : { backgroundColor: "#EDEFFE" }
                 }
               >
-                <div className="nomor">56</div>
+                <div className="nomor">
+                  {diambil ? antrian.nomorUser : antrian.nomorTerakhir}
+                </div>
                 <div className="info">
                   {diambil ? "Nomor Anda" : "Nomor Terakhir"}
                 </div>
@@ -74,7 +93,7 @@ export default function First() {
                   backgroundColor: "#82DFF3",
                 }}
               >
-                <div className="nomor">36</div>
+                <div className="nomor">{antrian.nomorDiperiksa}</div>
                 <div className="info">Nomor Diperiksa</div>
               </CardContent>
             </Card>
@@ -87,7 +106,7 @@ export default function First() {
                   backgroundColor: "#E0E2B1",
                 }}
               >
-                <div className="nomor">1 Jam 45 menit</div>
+                <div className="nomor">{minToTime(antrian.EstimasiWaktu)}</div>
                 <div className="info">Estimasi Waktu Dipanggil</div>
               </CardContent>
             </Card>

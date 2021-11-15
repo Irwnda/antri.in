@@ -7,7 +7,6 @@ $main: #132f3a;
     display: flex;
     justify-content: space-around;
     a {
-      margin-top: 2rem;
       text-decoration: none;
       color: $main;
     }
@@ -19,5 +18,21 @@ $main: #132f3a;
     font-weight: 700;
     text-decoration: none;
     color: $main;
+  }
+}
+
+@media only screen and (min-width: 0) {
+  .menu {
+    a {
+      margin-top: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .menu {
+    a {
+      margin-top: 2rem;
+    }
   }
 }

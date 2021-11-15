@@ -45,7 +45,7 @@ export default function Antrian() {
   return (
     <div className="antrian">
       <Nav />
-      <div style={{ height: "5rem" }}></div>
+      <div className="filler"></div>
       <Link
         to="./"
         style={{

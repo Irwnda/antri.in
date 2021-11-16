@@ -1,0 +1,33 @@
+.dashboard {
+  background: linear-gradient(45deg, #fef8f0, #ccc);
+  position: relative;
+  .title {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  input {
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+}
+
+$main: #132f3a;
+.dashboard-nav {
+  .menu {
+    border-bottom: 1px solid $main;
+    display: flex;
+    justify-content: space-around;
+    a {
+      margin-top: 2rem;
+      text-decoration: none;
+      color: $main;
+    }
+  }
+
+  a.site-title {
+    font-family: "Cormorant SC", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: $main;
+  }
+}

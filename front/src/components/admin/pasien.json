@@ -1,0 +1,107 @@
+[
+  {
+    "nomor": 1,
+    "nama": "Muhammad Rayhan Raffi Pratama",
+    "alamat": "Wonosari Wetan Baru no. 10 Surabaya",
+    "telp": "08123456789",
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 2,
+    "nama": "Riki Mi'roj Ahmad",
+    "alamat": "Gang Durian no.7 Sidoarjo",
+    "telp": "08198765432",
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 3,
+    "nama": "Nizar Mayraldo",
+    "alamat": "Jalan jalan dulu no. 8 Surabaya",
+    "telp": "08133131313",
+    "status": "Sudah Diperiksa"
+  },
+  {
+    "nomor": 4,
+    "nama": "Achmad Akbar Irwanda",
+    "alamat": "Nyamplungan Indah no.10 Surabaya",
+    "telp": "081519300310",
+    "status": "Batal"
+  },
+  {
+    "nomor": 5,
+    "nama": "Muhammad Rayhan Raffi Pratama",
+    "alamat": "Wonosari Wetan Baru no. 10 Surabaya",
+    "telp": "08123456789",
+    "status": "Belum Hadir"
+  },
+  {
+    "nomor": 6,
+    "nama": "Riki Mi'roj Ahmad",
+    "alamat": "Gang Durian no.7 Sidoarjo",
+    "telp": "08198765432",
+    "status": "Sedang Diperiksa"
+  },
+  {
+    "nomor": 7,
+    "nama": "Nizar Mayraldo",
+    "alamat": "Jalan jalan dulu no. 8 Surabaya",
+    "telp": "08133131313",
+    "status": "Antri"
+  },
+  {
+    "nomor": 8,
+    "nama": "Achmad Akbar Irwanda",
+    "alamat": "Nyamplungan Indah no.10 Surabaya",
+    "telp": "081519300310",
+    "status": "Antri"
+  },
+  {
+    "nomor": 9,
+    "nama": "Muhammad Rayhan Raffi Pratama",
+    "alamat": "Wonosari Wetan Baru no. 10 Surabaya",
+    "telp": "08123456789",
+    "status": "Antri"
+  },
+  {
+    "nomor": 10,
+    "nama": "Riki Mi'roj Ahmad",
+    "alamat": "Gang Durian no.7 Sidoarjo",
+    "telp": "08198765432",
+    "status": "Batal"
+  },
+  {
+    "nomor": 11,
+    "nama": "Nizar Mayraldo",
+    "alamat": "Jalan jalan dulu no. 8 Surabaya",
+    "telp": "08133131313",
+    "status": "Antri"
+  },
+  {
+    "nomor": 12,
+    "nama": "Achmad Akbar Irwanda",
+    "alamat": "Nyamplungan Indah no.10 Surabaya",
+    "telp": "081519300310",
+    "status": "Antri"
+  },
+  {
+    "nomor": 13,
+    "nama": "Muhammad Rayhan Raffi Pratama",
+    "alamat": "Wonosari Wetan Baru no. 10 Surabaya",
+    "telp": "08123456789",
+    "status": "Antri"
+  },
+  {
+    "nomor": 14,
+    "nama": "Riki Mi'roj Ahmad",
+    "alamat": "Gang Durian no.7 Sidoarjo",
+    "telp": "08198765432",
+    "status": "Batal"
+  },
+  {
+    "nomor": 15,
+    "nama": "Nizar Mayraldo",
+    "alamat": "Jalan jalan dulu no. 8 Surabaya",
+    "telp": "08133131313",
+    "status": "Antri"
+  }
+]

@@ -4,6 +4,7 @@ import Login from "./components/account/login";
 import Register from "./components/account/register";
 import Beranda from "./components/front/Beranda";
 import Antrian from "./components/front/Antrian";
+import Dashboard from "./components/admin/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path="/antrian">
             <Antrian />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           <Route path="/login">
             <Login />

@@ -16,11 +16,12 @@ import {
   TextField,
 } from "@mui/material";
 import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import Axios from "axios";
 
 export default function Login() {
   const [values, setValues] = React.useState({
-    username: "",
+    email: "",
     password: "",
     showPassword: false,
   });
@@ -52,6 +53,26 @@ export default function Login() {
       backgroundColor: "#51d596",
     },
   }));
+
+  let history = useHistory();
+  const url = "http://localhost:5000/api/auth";
+
+  function signin() {
+    Axios.post(url, values)
+      .then((res) => {
+        console.log(res);
+        // if (res.data.role_id === 0) history.push("/");
+        // else history.push("/admin");
+      })
+      .catch((error) => {
+        console.log(error.response);
+        // let responseText = JSON.parse(error.response.request.response);
+
+        // let msg = responseText[Object.keys(responseText)];
+        // if (Array.isArray(msg)) setFailedMsg(msg[0]);
+        // else setFailedMsg(msg);
+      });
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }} className="base-container">
@@ -125,7 +146,11 @@ export default function Login() {
               </Link>
             </p>
             <div className="clearfix"></div>
-            <ColorButton variant="contained" className="button">
+            <ColorButton
+              variant="contained"
+              className="button"
+              onClick={signin}
+            >
               Sign In
             </ColorButton>
             <p>

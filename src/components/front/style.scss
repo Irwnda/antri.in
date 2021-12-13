@@ -15,6 +15,17 @@ $background: #fef8f0;
     }
   }
 
+  .image {
+    height: 80vh;
+    float: left;
+    margin: 0;
+    img {
+      position: fixed;
+      right: 50%;
+      height: 100%;
+    }
+  }
+
   .clearfix {
     clear: both;
     height: 1rem;

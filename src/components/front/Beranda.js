@@ -3,6 +3,7 @@ import Nav from "./nav";
 import "./style.scss";
 import antrian from "./antrian.json";
 import { Link } from "react-router-dom";
+import Pana from "../../img/pana.png";
 import {
   Box,
   Button,
@@ -69,7 +70,7 @@ export default function Beranda() {
             display={{ xs: "none", md: "block" }}
             className="image"
           >
-            Ini gambar
+            <img src={Pana} alt="" />
           </Box>
           <Grid item xs={12} md={5}>
             <Card className="kartu-nomor">

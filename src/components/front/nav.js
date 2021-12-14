@@ -1,9 +1,17 @@
 import React from "react";
 import "./nav.scss";
 import { Box, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function Nav() {
+  let history = useHistory();
+
+  function logout() {
+    Cookies.remove("token");
+    history.push("/login");
+  }
+
   return (
     <>
       <Box
@@ -24,8 +32,10 @@ export default function Nav() {
           </Grid>
 
           <Grid item md className="menu">
-            <Link to="/">Bantuan</Link>
-            <Link to="/">Akun Saya</Link>
+            <Link to="/dashboard2">Bantuan</Link>
+            <div className="link" onClick={logout}>
+              Akun Saya
+            </div>
           </Grid>
         </Grid>
       </Box>
@@ -46,8 +56,10 @@ export default function Nav() {
           <Grid item xs className="menu">
             <Link to="/">Riwayat</Link>
             <Link to="/">Tentang</Link>
-            <Link to="/">Bantuan</Link>
-            <Link to="/">Akun Saya</Link>
+            <Link to="/dashboard">Bantuan</Link>
+            <div className="link" onClick={logout}>
+              Akun Saya
+            </div>
           </Grid>
         </Grid>
       </Box>

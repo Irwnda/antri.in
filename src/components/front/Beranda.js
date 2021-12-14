@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "./nav";
 import "./style.scss";
-import antrian from "./antrian.json";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Pana from "../../img/pana.png";
 import {
   Box,
@@ -14,18 +13,35 @@ import {
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Cookies from "js-cookie";
+import Axios from "axios";
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: "absolute !important",
+  top: "50% !important",
+  left: "50% !important",
+  transform: "translate(-50%, -50%) !important",
   width: 400,
-  bgcolor: "#EDEFFE",
-  border: "2px solid #132F3A",
+  bgcolor: "#EDEFFE !important",
+  border: "2px solid #132F3A !important",
   boxShadow: 24,
   p: 2,
 };
+
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
+}
 
 function minToTime(minutes) {
   let hour = Math.floor(minutes / 60);
@@ -36,14 +52,87 @@ function minToTime(minutes) {
   return hour + " jam " + min + " menit";
 }
 
+function currentUser() {
+  if (Cookies.get("token") === undefined) return 0;
+  return parseJwt(Cookies.get("token")).user.id;
+}
+
 export default function Beranda() {
+  const url = "/api/queues";
+  const history = useHistory();
+
   const [diambil, setDiambil] = React.useState(false);
+  const [nomorTerakhir, setLastNum] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const [diperiksa, setDiperiksa] = React.useState(0);
+
+  const headers = {
+    "Content-Type": "application/json",
+    "x-auth-token": Cookies.get("token"),
+  };
+
+  useEffect(() => {
+    if (Cookies.get("token") === undefined) {
+      history.push("/login");
+    }
+  });
+
+  useEffect(() => {
+    Axios.get(url).then((res) => {
+      let flag = 1;
+      console.log("ini loh", res);
+      for (let i = 0; i < res.data.length; i++) {
+        if (flag) {
+          if (res.data[i].status === 1) flag = 0;
+          else setDiperiksa(i + 1);
+        }
+        if (res.data[i].user === currentUser()) {
+          setDiambil(true);
+          Cookies.set("_id", res.data[i]._id, { expires: 1 });
+          Cookies.set("urutan", res.data[i].num, { expires: 1 });
+        }
+      }
+      setLastNum(res.data.at(-1).num);
+    });
+    // console.log(Cookies.get("_id"));
+  }, []);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleAntrian = () => {
-    setDiambil(!diambil);
+    console.log("curr ", currentUser(), Cookies.get("_id"));
+    if (diambil) {
+      Axios.delete(url + "/" + Cookies.get("_id"), {
+        headers: headers,
+      })
+        .then((res) => {
+          Cookies.remove("_id");
+          Cookies.remove("urutan");
+          Axios.get("/api/queues/").then((res) => {
+            setLastNum(res.data.at(-1).num);
+          });
+          setDiambil(!diambil);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    } else {
+      Axios.post(
+        url,
+        {},
+        {
+          headers: headers,
+        }
+      )
+        .then((res) => {
+          Cookies.set("_id", res.data._id, { expires: 1 });
+          Cookies.set("urutan", res.data.num, { expires: 1 });
+          setDiambil(!diambil);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
     handleClose();
   };
 
@@ -82,7 +171,7 @@ export default function Beranda() {
                 }
               >
                 <div className="nomor">
-                  {diambil ? antrian.nomorUser : antrian.nomorTerakhir}
+                  {diambil ? Cookies.get("urutan") : nomorTerakhir}
                 </div>
                 <div className="info">
                   {diambil ? "Nomor Anda" : "Nomor Terakhir"}
@@ -95,7 +184,7 @@ export default function Beranda() {
                   backgroundColor: "#82DFF3",
                 }}
               >
-                <div className="nomor">{antrian.nomorDiperiksa}</div>
+                <div className="nomor">{diperiksa}</div>
                 <div className="info">Nomor Diperiksa</div>
               </CardContent>
             </Card>
@@ -108,7 +197,9 @@ export default function Beranda() {
                   backgroundColor: "#E0E2B1",
                 }}
               >
-                <div className="nomor">{minToTime(antrian.EstimasiWaktu)}</div>
+                <div className="nomor">
+                  {minToTime((nomorTerakhir - diperiksa) * 10)}
+                </div>
                 <div className="info">Estimasi Waktu Dipanggil</div>
               </CardContent>
             </Card>

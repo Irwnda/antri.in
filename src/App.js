@@ -44,7 +44,7 @@ function App() {
           <Route path="/laporan2">
             <Laporan2 />
           </Route>
-          <Route path="/dashboard2">
+          <Route path="/table">
             <MTable />
           </Route>
         </Switch>

@@ -29,7 +29,6 @@ export default function Dashboard() {
 
   const handleBuka = () => {
     Axios.get("/api/queues/").then((res) => {
-      console.log("res", res.data);
       setPasien(res.data);
       setBuka(true);
     });

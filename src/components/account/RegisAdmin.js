@@ -72,14 +72,6 @@ function RegisAdmin() {
         history.push("/dashboard");
         // else history.push("/admin");
       })
-      .catch((error) => {
-        console.log(error.response);
-        // let responseText = JSON.parse(error.response.request.response);
-
-        // let msg = responseText[Object.keys(responseText)];
-        // if (Array.isArray(msg)) setFailedMsg(msg[0]);
-        // else setFailedMsg(msg);
-      });
   }
 
   return (

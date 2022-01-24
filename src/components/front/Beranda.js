@@ -80,7 +80,6 @@ export default function Beranda() {
   useEffect(() => {
     Axios.get(url).then((res) => {
       let flag = 1;
-      console.log("ini loh", res);
       for (let i = 0; i < res.data.length; i++) {
         if (flag) {
           if (res.data[i].status === 1) flag = 0;
@@ -94,28 +93,22 @@ export default function Beranda() {
       }
       setLastNum(res.data.at(-1).num);
     });
-    // console.log(Cookies.get("_id"));
   }, []);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleAntrian = () => {
-    console.log("curr ", currentUser(), Cookies.get("_id"));
     if (diambil) {
       Axios.delete(url + "/" + Cookies.get("_id"), {
         headers: headers,
-      })
-        .then((res) => {
-          Cookies.remove("_id");
-          Cookies.remove("urutan");
-          Axios.get("/api/queues/").then((res) => {
-            setLastNum(res.data.at(-1).num);
-          });
-          setDiambil(!diambil);
-        })
-        .catch((error) => {
-          console.log(error.response);
+      }).then((res) => {
+        Cookies.remove("_id");
+        Cookies.remove("urutan");
+        Axios.get("/api/queues/").then((res) => {
+          setLastNum(res.data.at(-1).num);
         });
+        setDiambil(!diambil);
+      });
     } else {
       Axios.post(
         url,
@@ -123,15 +116,11 @@ export default function Beranda() {
         {
           headers: headers,
         }
-      )
-        .then((res) => {
-          Cookies.set("_id", res.data._id, { expires: 1 });
-          Cookies.set("urutan", res.data.num, { expires: 1 });
-          setDiambil(!diambil);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      ).then((res) => {
+        Cookies.set("_id", res.data._id, { expires: 1 });
+        Cookies.set("urutan", res.data.num, { expires: 1 });
+        setDiambil(!diambil);
+      });
     }
     handleClose();
   };

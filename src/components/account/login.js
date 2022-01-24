@@ -55,14 +55,6 @@ export default function Login() {
         Cookies.set("token", res.data.token, { expires: 1 });
         history.push("/");
       })
-      .catch((error) => {
-        console.log(error.response);
-        // let responseText = JSON.parse(error.response.request.response);
-
-        // let msg = responseText[Object.keys(responseText)];
-        // if (Array.isArray(msg)) setFailedMsg(msg[0]);
-        // else setFailedMsg(msg);
-      });
   }
 
   return (

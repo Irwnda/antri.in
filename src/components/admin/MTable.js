@@ -73,45 +73,31 @@ export default function MTable() {
                 newRow.status = Number(newRow.status);
                 Axios.post(url, newRow, {
                   headers: headers,
-                })
-                  .then((res) => {
-                    // console.log("bisakah? ", res);
-                    Axios.get(url).then((result) => {
-                      // setData(result.data);
-                      addFixed(setFixed(result.data));
-                    });
-                  })
-                  .catch((error) => {
-                    // console.log("gagal? ");
-                    console.log(error.response);
+                }).then((res) => {
+                  Axios.get(url).then((result) => {
+                    // setData(result.data);
+                    addFixed(setFixed(result.data));
                   });
+                });
                 setTimeout(() => {
                   // setData(updatedRows);
                   resolve();
                 }, 2000);
-                console.log(newRow);
               }),
             onRowUpdate: (updatedRow, oldRow) =>
               new Promise((resolve, reject) => {
                 updatedRow.status = Number(updatedRow.status);
-                // console.log("update row", updatedRow);
                 Axios.put(
                   url + "/" + updatedRow._id,
                   { status: updatedRow.status },
                   {
                     headers: headers,
                   }
-                )
-                  .then((res) => {
-                    Axios.get(url).then((result) => {
-                      // setData(result.data);
-                      addFixed(setFixed(result.data));
-                    });
-                  })
-                  .catch((error) => {
-                    // console.log("gagal? ");
-                    console.log(error.response);
+                ).then((res) => {
+                  Axios.get(url).then((result) => {
+                    addFixed(setFixed(result.data));
                   });
+                });
                 setTimeout(() => {
                   resolve();
                 }, 2000);

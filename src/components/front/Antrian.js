@@ -16,8 +16,6 @@ export default function Antrian() {
   const [daftarAntrian, setAntrian] = React.useState([]);
   const [totalAntrian, setTotalAntrian] = React.useState(0);
 
-  console.log(activePage);
-
   const handleLeft = () => {
     if (halaman > 1) setHalaman(halaman - 1);
     setActive(antrianList[halaman - 1]);
@@ -30,7 +28,6 @@ export default function Antrian() {
   React.useEffect(() => {
     Axios.get("/api/queues/").then((res) => {
       setTotalAntrian(res.data.length);
-      console.log("total ", res);
       if (res.data.length > 0) {
         setAntrian(res.data);
       }

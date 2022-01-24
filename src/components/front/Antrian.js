@@ -7,24 +7,65 @@ import "./style.scss";
 import { Box, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import { KeyboardArrowRight, KeyboardArrowLeft } from "@mui/icons-material";
+import Axios from "axios";
 
 export default function Antrian() {
   const antrianList = [listAntrian, listAntrian2, listAntrian3];
   const [halaman, setHalaman] = React.useState(1);
   const [activePage, setActive] = React.useState(antrianList[halaman - 1]);
-
-  console.log(activePage);
+  const [daftarAntrian, setAntrian] = React.useState([]);
+  const [totalAntrian, setTotalAntrian] = React.useState(0);
 
   const handleLeft = () => {
     if (halaman > 1) setHalaman(halaman - 1);
     setActive(antrianList[halaman - 1]);
   };
   const handleRight = () => {
-    if (halaman < 3) setHalaman(halaman + 1);
+    if (halaman < Math.ceil(totalAntrian / 24)) setHalaman(halaman + 1);
     setActive(antrianList[halaman - 1]);
   };
 
-  let list = [];
+  React.useEffect(() => {
+    Axios.get("/api/queues/").then((res) => {
+      setTotalAntrian(res.data.length);
+      if (res.data.length > 0) {
+        setAntrian(res.data);
+      }
+    });
+  }, []);
+
+  const list = [];
+  const list2 = [];
+  for (let i = 0; i < daftarAntrian.length; i++) {
+    let antrian = daftarAntrian[i];
+    let bgColor, keterangan;
+    if (antrian.status === 5) {
+      bgColor = "#F4F1B1";
+      keterangan = "Sudah diperiksa";
+    } else if (antrian.status === 2) {
+      bgColor = "#FF8541";
+      keterangan = "Batal";
+    } else if (antrian.status === 3) {
+      bgColor = "#BD9EAD";
+      keterangan = "Belum Hadir";
+    } else if (antrian.status === 4) {
+      bgColor = "#85D1F1";
+      keterangan = "Sedang Diperiksa";
+    } else {
+      bgColor = "#FFD7F6";
+      keterangan = "Antri";
+    }
+
+    list2.push(
+      <Card className="detailAntrian" key={antrian.num}>
+        <CardContent sx={{ backgroundColor: bgColor }} className="container">
+          <div className="nomor">{antrian.num}</div>
+          <div className="info">{keterangan}</div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   activePage.data.forEach((antrian) => {
     let bgColor;
     if (antrian.status === "Sudah Diperiksa") bgColor = "#F4F1B1";
@@ -68,7 +109,7 @@ export default function Antrian() {
           mt: 0,
         }}
       >
-        {list}
+        {list2}
       </Box>
       <div style={{ height: "3rem" }}></div>
       <Box
@@ -84,7 +125,9 @@ export default function Antrian() {
           right: 0,
         }}
       >
-        {activePage.start} - {activePage.end} of {activePage.total} items
+        {totalAntrian > 0 ? halaman * 24 - 24 + 1 : 0} -{" "}
+        {halaman * 24 > totalAntrian ? totalAntrian : halaman * 24} of{" "}
+        {totalAntrian} items
         <div className="right" onClick={handleRight}>
           <KeyboardArrowRight />
         </div>

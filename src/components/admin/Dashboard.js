@@ -1,15 +1,9 @@
 import React from "react";
 import Nav from "./Nav";
-import pasien from "./pasien.json";
 import "./style.scss";
 import { Box, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import { Link } from "react-router-dom";
-
+import Axios from "axios";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -20,21 +14,24 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
 const columns = [
-  { id: "nomor", label: "Nomor", minWidth: 10 },
-  { id: "nama", label: "Nama", minWidth: 100 },
-  { id: "alamat", label: "Alamat", minWidth: 170 },
-  { id: "telp", label: "Telp", minWidth: 170 },
+  { id: "num", label: "Nomor", minWidth: 10 },
+  { id: "name", label: "Nama", minWidth: 100 },
+  { id: "address", label: "Alamat", minWidth: 170 },
+  { id: "phone", label: "Telp", minWidth: 170 },
   { id: "status", label: "Status", minWidth: 170 },
 ];
 
 export default function Dashboard() {
-  const [value, setValue] = React.useState(null);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [buka, setBuka] = React.useState(false);
+  const [pasienAPI, setPasien] = React.useState([]);
 
   const handleBuka = () => {
-    setBuka(true);
+    Axios.get("/api/queues/").then((res) => {
+      setPasien(res.data);
+      setBuka(true);
+    });
   };
   const handleTutup = () => {
     setBuka(false);
@@ -92,7 +89,7 @@ export default function Dashboard() {
         <div className="title">
           <p>Daftar Pasien</p>
         </div>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             disableFuture
             openTo="year"
@@ -103,7 +100,7 @@ export default function Dashboard() {
             }}
             renderInput={(params) => <TextField {...params} />}
           />
-        </LocalizationProvider>
+        </LocalizationProvider> */}
         {buka ? (
           <>
             <ButtonTutup variant="contained" onClick={handleTutup}>
@@ -135,7 +132,7 @@ export default function Dashboard() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {pasien
+                {pasienAPI
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -143,10 +140,24 @@ export default function Dashboard() {
                         hover
                         role="checkbox"
                         tabIndex={-1}
-                        key={row.code}
+                        key={row._id}
                       >
                         {columns.map((column) => {
-                          const value = row[column.id];
+                          let value = row[column.id];
+                          if (column.id === "status") {
+                            if (row[column.id] === 5) {
+                              value = "Sudah diperiksa";
+                            } else if (row[column.id] === 2) {
+                              value = "Batal";
+                            } else if (row[column.id] === 3) {
+                              value = "Belum Hadir";
+                            } else if (row[column.id] === 4) {
+                              value = "Sedang Diperiksa";
+                            } else {
+                              value = "Antri";
+                            }
+                          }
+
                           return (
                             <TableCell key={column.id} align={column.align}>
                               {column.format && typeof value === "number"
@@ -164,7 +175,7 @@ export default function Dashboard() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={pasien.length}
+            count={pasienAPI.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

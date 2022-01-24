@@ -17,7 +17,9 @@ import {
   TextField,
 } from "@mui/material";
 import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import Axios from "axios";
+import Cookies from "js-cookie";
 
 function getDate() {
   let date = new Date();
@@ -30,12 +32,19 @@ function getDate() {
   );
 }
 export default function Register() {
+  let history = useHistory();
+
+  if (Cookies.get("token") !== undefined) {
+    history.push("/");
+  }
+
   const [values, setValues] = React.useState({
+    name: "",
     email: "",
     username: "",
-    noTelp: "",
-    alamat: "",
-    tglLahir: getDate(),
+    phone: "",
+    address: "",
+    dateOfBirth: getDate(),
     password: "",
     confirmPassword: "",
     showPassword: false,
@@ -68,6 +77,17 @@ export default function Register() {
       backgroundColor: "#51d596",
     },
   }));
+
+  const url = "/api/users";
+
+  function register() {
+    Axios.post(url, values)
+      .then((res) => {
+        Cookies.set("token", res.data.token, { expires: 1 });
+        history.push("/");
+        // else history.push("/admin");
+      })
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }} className="base-container">
@@ -110,8 +130,8 @@ export default function Register() {
               sx={{ m: 1, width: "80%", maxWidth: "500px" }}
               variant="filled"
               className="form-input"
-              value={values.nama}
-              onChange={handleChange("nama")}
+              value={values.name}
+              onChange={handleChange("name")}
             />
 
             <TextField
@@ -119,8 +139,8 @@ export default function Register() {
               sx={{ m: 1, width: "80%", maxWidth: "500px" }}
               variant="filled"
               className="form-input"
-              value={values.noTelp}
-              onChange={handleChange("noTelp")}
+              value={values.phone}
+              onChange={handleChange("phone")}
             />
 
             <TextField
@@ -128,8 +148,8 @@ export default function Register() {
               sx={{ m: 1, width: "80%", maxWidth: "500px" }}
               variant="filled"
               className="form-input"
-              value={values.alamat}
-              onChange={handleChange("alamat")}
+              value={values.address}
+              onChange={handleChange("address")}
             />
 
             <TextField
@@ -138,8 +158,8 @@ export default function Register() {
               variant="filled"
               type="date"
               className="form-input"
-              value={values.tglLahir}
-              onChange={handleChange("tglLahir")}
+              value={values.dateOfBirth}
+              onChange={handleChange("dateOfBirth")}
             />
 
             <FormControl
@@ -211,6 +231,7 @@ export default function Register() {
             <ColorButton
               variant="contained"
               sx={{ backgroundColor: "#51C296 !important" }}
+              onClick={register}
             >
               Sign Up
             </ColorButton>

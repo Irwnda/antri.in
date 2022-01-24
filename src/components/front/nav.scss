@@ -6,7 +6,8 @@ $main: #132f3a;
     border-bottom: 1px solid $main;
     display: flex;
     justify-content: space-around;
-    a {
+    a,
+    .link {
       text-decoration: none;
       color: $main;
     }
@@ -23,7 +24,8 @@ $main: #132f3a;
 
 @media only screen and (min-width: 0) {
   .menu {
-    a {
+    a,
+    .link {
       margin-top: 0;
     }
   }
@@ -31,7 +33,8 @@ $main: #132f3a;
 
 @media only screen and (min-width: 900px) {
   .menu {
-    a {
+    a,
+    .link {
       margin-top: 2rem;
     }
   }
